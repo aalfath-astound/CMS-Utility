@@ -1,7 +1,7 @@
 This utility classes are designed to help importing bulk images into Salesforce CMS and link them to Products in SF B2B 
 based on a specified field or based on SKU by default. The images names should match a specific field values on Products.
 Once the products have been linked to images, the flag isProcessed__c will be updated to true - 
-In Query we filter the products that were already processed
+In the queryLocator we filter the products that were already processed
 
 The are 2 options we can use this utility:
 
