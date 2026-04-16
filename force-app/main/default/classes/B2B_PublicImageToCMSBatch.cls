@@ -16,7 +16,7 @@
   private List<String> productSkuList;
   private String field;
   private boolean isStaticResource;
-  private String staticResourceName;
+  private String staticResourceOrLibraryName;
 
 
 
@@ -48,7 +48,7 @@
   * @param managedContentSpaceId 
   * @param productSku 
   * @param field 
-  * @param staticResourceName 
+  * @param staticResourceOrLibraryName 
   * @param isStaticResource 
   **/
     @SuppressWarnings('PMD.ExcessiveParameterList')
@@ -57,12 +57,12 @@
     String managedContentSpaceId,
     String productSku,
     String field,
-    String staticResourceName,
+    String staticResourceOrLibraryName,
     Boolean isStaticResource
   ) {
     this.query = query;
     this.isStaticResource = isStaticResource;
-    this.staticResourceName = staticResourceName;
+    this.staticResourceOrLibraryName = staticResourceOrLibraryName;
     this.productSku = productSku;
     this.managedContentSpaceId = managedContentSpaceId;
     this.field = field;
@@ -115,11 +115,11 @@
       Map<String, Blob> productSkuToImageBlob = new Map<String, Blob>();
 
       // Fetch image blobs from either static resource or library based on the isStaticResource flag
-      if(isStaticResource && staticResourceName!=null){
-          productSkuToImageBlob = B2B_FileUrlUtil.getImageBlobsFromStaticResource(staticResourceName,new Set<String>(productIdToProductSku.values()));
+      if(isStaticResource && staticResourceOrLibraryName!=null){
+          productSkuToImageBlob = B2B_FileUrlUtil.getImageBlobsFromStaticResource(staticResourceOrLibraryName,new Set<String>(productIdToProductSku.values()));
       }
        else{
-          productSkuToImageBlob = B2B_FileUrlUtil.getImageBlobsFromLibrary('products images',new Set<String>(productIdToProductSku.values()));
+          productSkuToImageBlob = B2B_FileUrlUtil.getImageBlobsFromLibrary(staticResourceOrLibraryName,new Set<String>(productIdToProductSku.values()));
       }
  // Mapping the product Id to the content key after publishing to CMS
    for (SObject record : scope) {
