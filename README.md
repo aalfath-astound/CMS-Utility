@@ -1,3 +1,5 @@
+Before this utility can be used in an environment - We need to open a case with Salesforce to request activation of "Salesforce CMS: PIM integration APIs". 
+
 This utility classes are designed to help importing bulk images into Salesforce CMS and link them to Products in SF B2B 
 based on a specified field or based on SKU by default. The images names should match a specific field values on Products.
 Once the products have been linked to images, the flag isProcessed__c will be updated to true - 
